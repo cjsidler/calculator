@@ -1,3 +1,10 @@
+// After you do 9 + 3 and hit enter you get 12
+// If you then hit + 10 you will get 15 because secondNum
+// is not getting updated
+
+// Also, what if you do 9 + 3 + 4? It doesn't update
+// the calculation after hitting the second operator
+
 let calcWrapper = document.getElementById('calculator-wrapper');
 let calcEle = document.getElementById('calculation');
 
@@ -16,7 +23,7 @@ function updateNum(event) {
         return;
     }
 
-    if (buttonPressed.classList.contains('main-button') && calcEle.innerText === '0') {
+    if (buttonPressed.classList.contains('main-button') && (calcEle.innerText === '0' || calcEle.innerText === '')) {
         if (buttonPressed.innerText === '.') {
             calcEle.innerText = '0.';
         } else {
@@ -102,9 +109,10 @@ function updateOperation(event) {
     if (buttonPressed.classList.contains('operator') && event.target.innerText === '=') {
         // If they clicked '=', perform the operation stored in 'operation' between firstNum and secondNum
 
-        if (calculation === 'none') {
-            secondNum = parseFloat(calcEle.innerText);
-        }
+        secondNum = parseFloat(calcEle.innerText);
+        // if (calculation === 'none') {
+        //     secondNum = parseFloat(calcEle.innerText);
+        // }
 
         if (operation === 'none') {
             return;
