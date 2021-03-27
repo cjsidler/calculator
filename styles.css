@@ -1,0 +1,91 @@
+:root {
+    --fonts: Jost, sans-serif;
+
+    --color-display: #6a5f52;
+    --color-functions: #c2b4a7;
+    --color-functions-pressed: #9B9086;
+    --color-numbers: #d1c7bc;
+    --color-numbers-pressed: #A79F96;
+    --color-operators: lightcoral;
+    --color-operators-pressed: indianred;
+    --color-text: white;
+    --color-border: #4f473e;
+}
+
+h1 {
+    font-family: var(--fonts);
+    font-weight: 800;
+    text-align: center;
+    color: var(--color-display);
+    margin: 10px 0;
+}
+
+p {
+    font-family: var(--fonts);
+    font-weight: 400;
+    text-align: center;
+    color: var(--color-display);
+    margin: 20px auto;
+    width: 320px;
+}
+
+#calculator-wrapper {
+    width: 320px;
+    height: 480px;
+    margin: 0 auto;
+    display: grid;
+    border: 2px solid var(--color-border);
+    border-radius: 1%;
+    padding: 0;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    position: relative;
+}
+
+.button {
+    user-select: none;
+    font-family: var(--fonts);
+    font-weight: 400;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+}
+
+#calculation {
+    grid-area: 1 / 1 / span 1 / span 4;
+    border: 1px solid var(--color-border);
+    background: var(--color-display);
+    color: var(--color-text);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 400;
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 10px;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+#calc-all-clear {
+    grid-area: 2 / 1 / span 1 / span 2;
+}
+
+#calc-0 {
+    grid-area: 6 / 1 / span 1 / span 2;
+}
+
+.operator {
+    background: var(--color-operators);
+}
+
+.function {
+    background: var(--color-functions);
+}
+
+.main-button {
+    background: var(--color-numbers);
+}
