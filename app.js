@@ -142,25 +142,32 @@ function updateOperation(event) {
         switch(buttonPressed.innerText) {
             case '÷':
                 operation = 'divide';
-                firstNum = parseFloat(calcEle.innerText);
+                // if innerText === '' then don't update firstNum
+                updateFirst(calcEle.innerText);
                 calcEle.innerText = '';
                 break;
             case '×':
                 operation = 'multiply';
-                firstNum = parseFloat(calcEle.innerText);
+                updateFirst(calcEle.innerText);
                 calcEle.innerText = '';
                 break;
             case '−':
                 operation = 'subtract';
-                firstNum = parseFloat(calcEle.innerText);
+                updateFirst(calcEle.innerText);
                 calcEle.innerText = '';
                 break;
             case '+':
                 operation = 'add';
-                firstNum = parseFloat(calcEle.innerText);
+                updateFirst(calcEle.innerText);
                 calcEle.innerText = '';
                 break;
         }
+    }
+}
+
+function updateFirst(string) {
+    if (string !== '') {
+        firstNum = parseFloat(calcEle.innerText);
     }
 }
 
