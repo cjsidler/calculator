@@ -1,7 +1,7 @@
-// Potential features to add:
-    // If the user does 6 + 3 it will compute 9 but if they keep hitting = it will keep adding 3
-        // Utilize tempNum / tempOperator in the updateOperation function?
-    // +/- button to allow user to change a number to a negative number
+// Future feature(s) to consider
+    // Updating display with rolling calculation as user performs operations
+    // i.e., if user presses 6 + 2 + 9 + 5 +
+    // the screen would update to 8 after second + and 17 after third + and 22 after fourth +
 
 let calcWrapper = document.getElementById('calculator-wrapper');
 let calcEle = document.getElementById('calculation');
@@ -118,6 +118,16 @@ function funcButton(event) {
         tempNum = 'none';
         tempOperator = 'none';
     } else if (buttonPressed === 'DEL' && calcEle.innerText !== 'error' && calcEle.innerText !== 'NaN') {
+
+        // NEW
+        // if the user has performed some kind of calculation (usually by clicking = or typing a number
+        // and then clicking another operator, the DEL key will also clear the calcArr thereby negating
+        // the previous calculation but it will leave the current number on display and still perform
+        // the normal action of pressing DEL
+        if (calcArr.length === 3) {
+            calcArr = [];
+        }
+
         // if calcEle.innerText is...
             // any single digit or 0., make it 0
         if (calcEle.innerText === '0.' || calcEle.innerText.length === 1) {
@@ -126,6 +136,11 @@ function funcButton(event) {
             // #.#, remove last char
             // multiple nums, remove last char
             calcEle.innerText = calcEle.innerText.slice(0, -1);
+
+            // if remaining text on display is a negative sign, instead put a 0
+            if (calcEle.innerText === '-') {
+                calcEle.innerText = '0';
+            }
         }
     }
 }
@@ -151,6 +166,8 @@ function equals(event) {
         return;
     }
 
+    buttonPressed = event.target.innerText;
+
     // if display is showing an error, do nothing
     if (calcEle.innerText === 'error' || calcEle.innerText === 'NaN') {
         return;
@@ -173,9 +190,36 @@ function equals(event) {
             }
             // calculate calcArr[0] and calcArr[2] and display on screen
             calcEle.innerText = calculate(calcArr[0], calcArr[2], calcArr[1]);
+
+        // NEW
+            // save operator and calcArr[2] to tempNum / tempOperator if user hits enter again
+            tempNum = calcArr[2];
+            tempOperator = calcArr[1];
     } else if (calcArr.length === 3) {
-        calcArr = [];
-        calcArr.push(parseFloat(calcEle.innerText));
+
+        // NEW
+            // calculate calcArr[0] and calcArr [2] using calcArr[1], save it to calcArr[0]
+            calcArr[0] = calculate(calcArr[0], calcArr[2], calcArr[1]);
+
+            // save operator and second num to temp variables
+            tempOperator = calcArr[1];
+            tempNum = calcArr[2];
+
+
+            // place tempOperator at calcArr[1] and tempNum at calcArr[2]
+            calcArr[1] = tempOperator;
+            calcArr[2] = tempNum;
+
+            // calculate calcArr[0] and calcArr [2] using calcArr[1] again and put on display
+            calcEle.innerText = calculate(calcArr[0], calcArr[2], calcArr[1]);
+
+            // clear tempOperator and tempNum?
+            tempOperator = 'none';
+            tempNum = 'none';
+
+        // Old, saved for now
+            // calcArr = [];
+            // calcArr.push(parseFloat(calcEle.innerText));
     }
 
     // Verify displayed number isn't out of range or too long
