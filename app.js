@@ -1,6 +1,7 @@
-// What if you do 9 + 3 + 4?
-
-// Potential features to add: Limit button clicking to left clicks only
+// Potential features to add:
+    // Limit button clicking to left clicks only
+    // If the user does 6 + 3 it will compute 9 but if they keep hitting = it will keep adding 3
+    // +/- button to allow user to change a number to a negative number
 
 let calcWrapper = document.getElementById('calculator-wrapper');
 let calcEle = document.getElementById('calculation');
