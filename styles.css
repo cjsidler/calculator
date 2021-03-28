@@ -78,7 +78,8 @@ p {
     grid-area: 6 / 1 / span 1 / span 2;
 }
 
-.operator {
+.operator, 
+.equals {
     background: var(--color-operators);
 }
 
