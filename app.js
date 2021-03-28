@@ -1,6 +1,7 @@
 // Potential features to add:
     // Limit button clicking to left clicks only
     // If the user does 6 + 3 it will compute 9 but if they keep hitting = it will keep adding 3
+        // Utilize tempNum / tempOperator in the updateOperation function?
     // +/- button to allow user to change a number to a negative number
 
 let calcWrapper = document.getElementById('calculator-wrapper');
