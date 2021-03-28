@@ -1,5 +1,4 @@
 // Potential features to add:
-    // Limit button clicking to left clicks only
     // If the user does 6 + 3 it will compute 9 but if they keep hitting = it will keep adding 3
         // Utilize tempNum / tempOperator in the updateOperation function?
     // +/- button to allow user to change a number to a negative number
@@ -14,6 +13,12 @@ let tempOperator = 'none';
 
 // Updates the number on the display when a user presses a number or decimal button
 function updateNum(event) {
+    
+    // left clicks only, any other click results in an immediate return
+    if (event.button !== 0) {
+        return;
+    }
+
     let buttonPressed = event.target;
     let displayedNum = calcEle.innerText;
 
@@ -61,6 +66,11 @@ function updateNum(event) {
 function changeButtonColor(event) {
     let buttonPressed = event.target;
 
+    // left clicks only, any other click results in an immediate return
+    if (event.button !== 0) {
+        return;
+    }
+
     if (event.type === 'mousedown') {
         if (buttonPressed.classList.contains('function')) {
             buttonPressed.style.backgroundColor = 'var(--color-functions-pressed)';
@@ -94,6 +104,12 @@ function outOfRange(num) {
 
 // Function button clicked (AC to clear, DEL to delete one digit if no operator button was pressed)
 function funcButton(event) {
+
+    // left clicks only, any other click results in an immediate return
+    if (event.button !== 0) {
+        return;
+    }
+
     let buttonPressed = event.target.innerText;
 
     if (buttonPressed === 'AC') {
@@ -130,6 +146,10 @@ function calculate(num1, num2, operation) {
 
 // Handles scenarios where the equals button is pressed
 function equals(event) {
+    // left clicks only, any other click results in an immediate return
+    if (event.button !== 0) {
+        return;
+    }
 
     // if display is showing an error, do nothing
     if (calcEle.innerText === 'error' || calcEle.innerText === 'NaN') {
@@ -166,6 +186,12 @@ function equals(event) {
 
 // Handles scenarios where an operator button is pressed
 function updateOperation(event) {
+    
+    // left clicks only, any other click results in an immediate return
+    if (event.button !== 0) {
+        return;
+    }
+    
     let operatorUsed = event.target.innerText;
     let currentDisplay = calcEle.innerText;
 
